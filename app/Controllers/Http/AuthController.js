@@ -34,6 +34,17 @@ class AuthController {
         }
     }
 
+    async register({request,auth,response}){
+        try{
+            let data = request.all();
+            let user = await User.create(data);
+            let accessToken = await auth.generate(user);
+            return response.status(201).json({ "user": user, "access_token": accessToken });
+        }catch(error){
+            return response.status(500).json({"message":error.message});
+        }
+    }
+
     async token({ request, auth, response }) {  
         try{
             let user_id_admin = 1;
