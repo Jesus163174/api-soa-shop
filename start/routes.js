@@ -22,6 +22,7 @@ Route.get('/', () => {
 
 Route.group(()=>{
     Route.post('login','AuthController.login');
+    Route.post('register','AuthController.register');
 }).prefix('api/v1/auth');
 
 Route.group(()=>{
